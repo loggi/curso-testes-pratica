@@ -1,0 +1,27 @@
+version: '3.6'
+
+services:
+  db:
+    image: mdillon/postgis:9.6
+    expose:
+      - 5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data/
+      - pg_backups:/pg_backups/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  web:
+    build: .
+    command: python /app/loggi/manage.py migrate --noinput
+    command: python /app/loggi/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+volumes:
+  pg_data: {}
+  pg_backups: {}

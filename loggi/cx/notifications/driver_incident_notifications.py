@@ -1,3 +1,4 @@
+# coding: utf-8
 SMS_MAX_LENGTH = 160
 MIN_COMPANY_NAME_SIZE = 6
 

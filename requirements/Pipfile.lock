@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "351e03a0d4e83094e326e37f8b55ffacec1a3447c32dfc8cab9f49cf36e7503a"
+            "sha256": "eaeb8de854b642d8ad2fd0867ae748ee4ea00fc4dfb62c9b591fe837ad66ef28"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -23,6 +23,14 @@
             ],
             "index": "pypi",
             "version": "==2.0"
+        },
+        "phonenumbers": {
+            "hashes": [
+                "sha256:59e69bccd593220f20124ad4bf9c3883ac651b84c0092b41ae8efc7a61bc394c",
+                "sha256:f34ebb143ef3563f0b783a3c15b88a80c7915386b8dfbb95a7e5bfce5e4ab45b"
+            ],
+            "index": "pypi",
+            "version": "==8.10.7"
         },
         "psycopg2": {
             "hashes": [
@@ -137,10 +145,10 @@
         },
         "zipp": {
             "hashes": [
-                "sha256:ccc94ed0909b58ffe34430ea5451f07bc0c76467d7081619a454bf5c98b89e28",
-                "sha256:feae2f18633c32fc71f2de629bfb3bd3c9325cd4419642b1f1da42ee488d9b98"
+                "sha256:5c56e330306215cd3553342cfafc73dda2c60792384117893f3a83f8a1209f50",
+                "sha256:d65287feb793213ffe11c0f31b81602be31448f38aeb8ffc2eb286c4f6f6657e"
             ],
-            "version": "==2.1.0"
+            "version": "==2.2.0"
         }
     }
 }

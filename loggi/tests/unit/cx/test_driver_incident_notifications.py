@@ -1,6 +1,3 @@
-# coding: utf-8
-
-from __future__ import absolute_import, unicode_literals
 import pytest
 from cx.notifications.driver_incident_notifications import calculate_company_max_name_size
 

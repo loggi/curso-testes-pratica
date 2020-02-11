@@ -9,4 +9,4 @@ Para executar esse projeto, instale as seguintes ferramentas:
 ## Como executar esse projeto
 1. Em seu terminal, abra o diretório raiz desse projeto (onde esse readme está localizado)
 2. Crie o ambiente executando o seguinte comando: `docker-compose up --build`
-3. Você deve conseguir acessar a página em seu navegador: http://127.0.0.1:8000/
+3. Você deve conseguir acessar a página em seu navegador: http://127.0.0.1:8002/

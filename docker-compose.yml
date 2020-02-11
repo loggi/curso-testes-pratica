@@ -16,11 +16,11 @@ services:
     build: .
     container_name: "aula_testes_app"
     command: python /app/loggi/manage.py migrate --noinput
-    command: python /app/loggi/manage.py runserver 0.0.0.0:8000
+    command: python /app/loggi/manage.py runserver 0.0.0.0:8002
     volumes:
       - .:/app
     ports:
-      - 8000:8000
+      - 8002:8002
     depends_on:
       - db
 

@@ -3,23 +3,10 @@ import pytest
 
 
 @pytest.mark.parametrize(
-    'country_code, region_code',
-    (
-        ('', '11'),
-        ('55', '11'),
-        ('+55', '11'),
-    ),
-    ids=(
-        'without_country_code',
-        'with_country_and_region_codes',
-        'country_code_already_with_plus_sign',
-    )
-)
-@pytest.mark.parametrize(
     'primary_phone_number, expected_formatted_phone_number',
     (
-        ('32341234', '(11) 3234-1234'),
-        ('912341234', '(11) 91234-1234'),
+        ('1132341234', '(11) 3234-1234'),
+        ('11912341234', '(11) 91234-1234'),
     ),
     ids=(
         '8_digits_number',
@@ -27,15 +14,9 @@ import pytest
     )
 )
 def test_format_phone_number_code_variations(
-    country_code, region_code,
     primary_phone_number,
     expected_formatted_phone_number,
 ):
-    primary_phone_number = '{country_code}{region_code}{phone_number}'.format(
-        country_code=country_code,
-        region_code=region_code,
-        phone_number=primary_phone_number,
-    )
 
     actual_phone_number = format_phone_number(primary_phone_number)
 

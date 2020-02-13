@@ -19,6 +19,7 @@ LOCAL_APPS = [
     'cx',
     'base',
     'dispatch',
+    'examples',
 ]
 
 # Quick-start development settings - unsuitable for production

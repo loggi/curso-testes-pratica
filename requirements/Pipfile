@@ -8,7 +8,7 @@ pytest-django = "==3.5.1"
 pytest = "==4.0.0"
 
 [packages]
-django = "==2.0"
+django = "==2.2.10"
 psycopg2 = "==2.7.5"
 phonenumbers = "==8.10.7"
 pytest-cov = "==2.5.1"

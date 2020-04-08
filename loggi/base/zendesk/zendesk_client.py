@@ -1,8 +1,6 @@
 import logging
 from zenpy import Zenpy
 from zenpy.lib.api_objects import Ticket, Comment
-import requests
-from requests.auth import HTTPBasicAuth
 from base.zendesk.const import ZENDESK_TICKET_TYPE
 
 logger = logging.getLogger('loggi.zendesk.base.zendesk_client')
@@ -10,20 +8,12 @@ logger = logging.getLogger('loggi.zendesk.base.zendesk_client')
 
 class ZendeskClient(object):
     """Provides a client interface with Zendesk, using `zenpy` API wrappers."""
-    URL_TPL = 'https://{subdomain}.zendesk.com'
-    ENDPOINT_JIRA_LINK = '{url}/api/services/jira/links'
-    MAX_OBJECTS_PER_REQUEST = 50
 
     def __init__(self, email, token, subdomain):
         self.email = email
         self.token = token
         self.subdomain = subdomain
-        self.url = self.URL_TPL.format(subdomain=subdomain)
-        self.auth = HTTPBasicAuth(email+'/token', token)
         self._zenpy_client_instance = None
-        self._zdesk_client_instance = None
-        self._target = None
-        self._trigger = None
 
     @property
     def zenpy_client(self):
@@ -170,24 +160,3 @@ class ZendeskClient(object):
     def _publish_comment(self, ticket, comment, public):
         ticket.comment = Comment(body=comment, public=public)
         return self.zenpy_client.tickets.update(ticket)
-
-    def get_link_jira_issues(self, ticket_id):
-        url_link = self.ENDPOINT_JIRA_LINK.format(url=self.url)
-        response = requests.get(
-            url=url_link,
-            auth=self.auth,
-            params={'ticket_id': ticket_id}
-        )
-
-        if response.status_code == 200:
-            return response.json()
-        else:
-            logger.error(
-                'Zendesk API link request failed',
-                extra={'data': {
-                    'ticket_id': ticket_id,
-                    'url': url_link,
-                    'status': response.status_code,
-                    'detail': response.content,
-                }})
-            return None

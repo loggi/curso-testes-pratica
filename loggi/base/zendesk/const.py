@@ -1,0 +1,1 @@
+ZENDESK_TICKET_TYPE = 'ticket'

@@ -20,6 +20,7 @@ LOCAL_APPS = [
     'base',
     'dispatch',
     'examples',
+    'players',
 ]
 
 # Quick-start development settings - unsuitable for production

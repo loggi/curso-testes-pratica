@@ -1,6 +1,8 @@
 import logging
+
 from zenpy import Zenpy
 from zenpy.lib.api_objects import Ticket, Comment
+
 from base.zendesk.const import ZENDESK_TICKET_TYPE
 
 logger = logging.getLogger('loggi.zendesk.base.zendesk_client')
@@ -76,17 +78,17 @@ class ZendeskClient(object):
         )
 
     def mark_as_open(self, tid):
-        ticket = self.zenpy_client.tickets(id=tid)
+        ticket = self.get_ticket(tid=tid)
         ticket.status = 'open'
         return self.zenpy_client.update(ticket)
 
     def mark_as_pending(self, tid):
-        ticket = self.zenpy_client.tickets(id=tid)
+        ticket = self.get_ticket(tid=tid)
         ticket.status = 'pending'
         return self.zenpy_client.update(ticket)
 
     def mark_as_solved(self, tid):
-        ticket = self.zenpy_client.tickets(id=tid)
+        ticket = self.get_ticket(tid=tid)
         ticket.status = 'solved'
         return self.zenpy_client.update(ticket)
 

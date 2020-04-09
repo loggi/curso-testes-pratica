@@ -84,6 +84,7 @@ class LoggiUser(User):
     def has_cx_priority(self):
         if self.company:
             return self.company.has_cx_priority
+        return False
 
     def delete(self, *args, **kwargs):
         """

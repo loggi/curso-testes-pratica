@@ -33,6 +33,11 @@ WHATSAPP_RATINGS = {
 }
 
 
+class Recipient(object):
+    def __init__(self, first_name):
+        self.first_name = first_name
+
+
 def whatsapp_rating_reply_message(intention, response, recipient):
 
     if intention in WHATSAPP_RATINGS:

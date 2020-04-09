@@ -55,3 +55,45 @@ def test_add_tag_when_has_tag():
 
     # then
     zenpy_client_mock.tickets.update.assert_not_called()
+
+
+def test_sync_ticket_comments():
+    ticket_comments = ['comment1']
+    actual_comments = ['comment1', 'comment2']
+    expected_unpublished = ['comment1', 'comment2']
+
+    zendesk_client = ZendeskClient(email='email@loggi.com', token='secret_token', subdomain='loggisubdomain')
+    zenpy_client_mock = mock.MagicMock()
+
+    zendesk_client._zenpy_client_instance = zenpy_client_mock
+
+    # given
+    ticket = mock.MagicMock(spec=Ticket)
+    zendesk_client._publish_comment = mock.MagicMock()
+    zendesk_client._publish_comment.return_value = None
+
+    zendesk_client.zenpy_client.tickets = mock.MagicMock()
+    zendesk_client.zenpy_client.tickets.return_value = ticket
+    zendesk_client.zenpy_client.tickets.update.return_value = None
+
+    zendesk_client._fetch_ticket_comments = mock.MagicMock()
+    zendesk_client._fetch_ticket_comments.return_value = ticket_comments
+
+    # when
+    ticket_id = 666
+    zendesk_client.sync_ticket_comments(ticket_id=ticket_id, expected_comments=actual_comments)
+
+    # then
+    zendesk_client._fetch_ticket_comments.assert_called_once_with(ticket_id=ticket_id)
+    expected_publish_comment_calls = [
+        mock.call(
+            ticket=ticket,
+            comment=comment,
+            public=False,
+        )
+        for comment in expected_unpublished
+    ]
+    zendesk_client._publish_comment.assert_has_calls(
+        expected_publish_comment_calls,
+        any_order=False,
+    )

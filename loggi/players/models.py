@@ -72,7 +72,8 @@ class LoggiUser(User):
         super(LoggiUser, self).save(*args, **kwargs)
 
     def is_mobile_unique(self):
-        return not LoggiUser.objects.exclude(pk=self.pk).filter(mobile_1=self.mobile_1).exists()
+        return not LoggiUser.objects.exclude(pk=self.pk).filter(
+            mobile_1=self.mobile_1).exists()
 
     def can_edit(self):
         if self.is_staff:

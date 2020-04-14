@@ -65,6 +65,7 @@ class ZendeskClient(object):
         return self.zenpy_client.tickets.create(ticket)
 
     def get_ticket(self, tid):
+        logger.info('A ticket was fetch from Zendesk')
         return self.zenpy_client.tickets(id=tid)
 
     def get_tickets(self, tids):
